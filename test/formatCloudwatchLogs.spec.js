@@ -28,7 +28,7 @@ describe('handler/formatCloudwatchLogs.js', function() {
           .then(function(result) {
             assert.ok(result.hasOwnProperty('setting'),
               'process returns config object');
-            assert.deepStrictEqual(result.data, dataJson,
+            assert.deepEqual(result.data, dataJson,
               'CloudWatch Logs data formatted successfully');
             done();
           });

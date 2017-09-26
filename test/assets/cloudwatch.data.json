@@ -1,4 +1,7 @@
 {
+  "logGroup":"/aws/lambda/LambdaStashTest",
+  "logStream":"2016/06/18/[$LATEST]1234567890abcdef",
+  "subscriptionFilters":["LambdaStashTest-Filter"],
   "logEvents": [
     {"id":"1234567890","timestamp":1466263061409,"message":"START RequestId: abcdef-1234-5678-9012-abcdef Version: $LATEST\n"},
     {"id":"1234567891","timestamp":1466263061419,"message":"2016-06-18T15:17:41.419Z\tabcdef-1234-5678-9012-abcdef\tExample log message 1\n"},
@@ -7,3 +10,4 @@
     {"id":"1234567894","timestamp":1466263061449,"message":"REPORT RequestId: abcdef-1234-5678-9012-abcdef\tDuration: 432.10 ms\tBilled Duration: 500 ms \tMemory Size: 256 MB\tMax Memory Used: 123 MB\n"}
   ]
 }
+

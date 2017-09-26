@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var moment = require('moment')
 
 exports.process = function(config) {
   console.log('formatCloudwatchLogs');
@@ -14,6 +15,7 @@ exports.process = function(config) {
   var i;
   var item;
   var parts;
+
   for (i = 0; i < num; i++) {
     item = config.data.logEvents[i];
 
@@ -53,8 +55,13 @@ exports.process = function(config) {
     if (config.dateField && config.dateField !== 'timestamp') {
       item[config.dateField] = new Date(item.timestamp).toISOString();
     }
+    item.logGroup = config.data.logGroup;
+    item.logStream = config.data.logStream;
+    item.subscriptionFilters = config.data.subscriptionFilters;
+    item['timestamp'] = moment().format();
     items.push(item);
   }
   config.data = items;
+
   return Promise.resolve(config);
 };
