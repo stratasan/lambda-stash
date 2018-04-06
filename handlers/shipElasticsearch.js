@@ -40,6 +40,8 @@ exports.process = function(config) {
           return reject(err);
         } else if (result.errors) {
           return reject(result);
+        } else {
+          console.log(JSON.stringify(result))
         }
         resolve();
       });

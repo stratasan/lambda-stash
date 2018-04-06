@@ -54,18 +54,17 @@ exports.process = function(config) {
 
     if (config.dateField && config.dateField !== 'timestamp') {
       item[config.dateField] = new Date(item.timestamp).toISOString();
+    } else {
+      item['@timestamp'] = moment().format();
     }
+    item['timestamp'] = new Date(item.timestamp).toISOString();
 
-    parts = config.data.logGroup.match(/^\/aws\/lambda\/(.*)$/);
-    if (parts && parts[1]) {
-      item.logGroup = parts[1];
-    }
+    item.logGroup = config.data.logGroup;
     parts = config.data.logStream.match(/^[0-9]+\/[0-9]+\/[0-9]+\/\[.+?\](.*)$/);
     if (parts && parts[1]) {
       item.logStream = parts[1];
     }
     item.subscriptionFilters = config.data.subscriptionFilters;
-    item['timestamp'] = moment().format();
     items.push(item);
   }
   config.data = items;
